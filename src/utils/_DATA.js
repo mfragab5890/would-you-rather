@@ -1,20 +1,42 @@
+import faker from 'faker'
+
+let authedUser = {
+  id : '',
+  name : '',
+  avatarURL : ''
+}
+
 let users = {
+  mostafa_fouad: {
+    id: 'mostafa_fouad',
+    password : '',
+    name: 'Mostafa Fouad',
+    avatarURL: faker.image.avatar(),
+    answers: {
+      "8xf0y6ziyjabvozdd253nd": 'optionOne',
+      "vthrdm985a262al8qx3do": 'optionOne',
+
+    },
+    questions: ['8xf0y6ziyjabvozdd253nd']
+  },
   sarahedo: {
     id: 'sarahedo',
+    password : '',
     name: 'Sarah Edo',
-    avatarURL: ,
+    avatarURL: faker.image.avatar(),
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
       "am8ehyc8byjqgar0jgpub9": 'optionTwo',
       "loxhs1bqm25b708cmbf3g": 'optionTwo'
     },
-    questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
+    questions: ['am8ehyc8byjqgar0jgpub9']
   },
   tylermcginnis: {
     id: 'tylermcginnis',
+    password : '',
     name: 'Tyler McGinnis',
-    avatarURL: ,
+    avatarURL: faker.image.avatar(),
     answers: {
       "vthrdm985a262al8qx3do": 'optionOne',
       "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -23,8 +45,9 @@ let users = {
   },
   johndoe: {
     id: 'johndoe',
+    password : '',
     name: 'John Doe',
-    avatarURL: ,
+    avatarURL: faker.image.avatar(),
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -157,7 +180,7 @@ export function _saveQuestion (question) {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
       }
-      
+
       users = {
         ...users,
         [authedUser]: {
@@ -198,5 +221,67 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 
       res()
     }, 500)
+  })
+}
+
+export function _saveNewUser (user) {
+  return new Promise((res, rej) => {
+    const {id, name, password} = user;
+    if (!users[id]) {
+      setTimeout(() => {
+        users = {
+          ...users,
+          [id] :{
+            id: id,
+            password : password,
+            name: name,
+            avatarURL: faker.image.avatar(),
+            answers: {},
+            questions: [],
+          }
+        }
+
+        res(authedUser)
+      }, 1000)
+    }
+    else {
+      const error = 'Sorry this id is already used'
+      res(error)
+    }
+
+
+  })
+}
+
+export function _saveLogin (user) {
+  return new Promise((res, rej) => {
+    const {authedId, password} = user;
+    if (users[authedId]) {
+      setTimeout(() => {
+        authedUser = {
+          id : authedId,
+          name : users[authedId].name,
+          avatarURL : users[authedId].avatarURL
+        }
+
+        res(authedUser)
+      }, 1000)
+    }
+
+
+  })
+}
+
+export function _logout (user) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      authedUser = {
+        id : null,
+        name : null,
+        avatarURL : '',
+      }
+      res(true)
+    }, 1000)
+
   })
 }
