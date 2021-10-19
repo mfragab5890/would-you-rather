@@ -1,11 +1,12 @@
 import faker from 'faker'
+import {hashIt, compareIt} from './helpers'
 
 let authedUser = null
 
 let users = {
   mostafa_fouad: {
     id: 'mostafa_fouad',
-    password : 'ILoveReact',
+    password : '$2a$10$pc053foJ1rHSjrs/dlp7quM5yPdXmrl1yg1fiWO7fIAANCcgd7PyW',
     name: 'Mostafa Fouad',
     avatarURL: faker.image.avatar(),
     answers: {
@@ -17,7 +18,7 @@ let users = {
   },
   sarahedo: {
     id: 'sarahedo',
-    password : '',
+    password : '$2a$10$pc053foJ1rHSjrs/dlp7quM5yPdXmrl1yg1fiWO7fIAANCcgd7PyW',
     name: 'Sarah Edo',
     avatarURL: faker.image.avatar(),
     answers: {
@@ -30,7 +31,7 @@ let users = {
   },
   tylermcginnis: {
     id: 'tylermcginnis',
-    password : '',
+    password : '$2a$10$pc053foJ1rHSjrs/dlp7quM5yPdXmrl1yg1fiWO7fIAANCcgd7PyW',
     name: 'Tyler McGinnis',
     avatarURL: faker.image.avatar(),
     answers: {
@@ -41,7 +42,7 @@ let users = {
   },
   johndoe: {
     id: 'johndoe',
-    password : '',
+    password : '$2a$10$pc053foJ1rHSjrs/dlp7quM5yPdXmrl1yg1fiWO7fIAANCcgd7PyW',
     name: 'John Doe',
     avatarURL: faker.image.avatar(),
     answers: {
@@ -223,13 +224,14 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 export function _saveNewUser (user) {
   return new Promise((res, rej) => {
     const {id, name, password} = user;
+    const hashedPassword = hashIt(password)
     if (!users[id]) {
       setTimeout(() => {
         users = {
           ...users,
           [id] :{
             id: id,
-            password : password,
+            password : hashedPassword,
             name: name,
             avatarURL: faker.image.avatar(),
             answers: {},
@@ -255,11 +257,14 @@ export function _saveNewUser (user) {
 }
 
 export function _login (user) {
-  return new Promise((res, rej) => {
+  return new Promise(async (res, rej) => {
     const {userId, userPassword} = user;
     if (users[userId]) {
       const {id, password} = users[userId]
-      if (id === userId && password === userPassword) {
+      const isPasswordValid = await compareIt(userPassword, password)
+      console.log(isPasswordValid);
+      if (id === userId && isPasswordValid === true) {
+        console.log('here');
         setTimeout(() => {
           authedUser = {
             id : userId,

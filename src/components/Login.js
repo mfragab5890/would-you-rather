@@ -129,7 +129,6 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = ({errors}) => {
-  console.log('errors are: ',errors.login_error);
   return {
     error : errors.login_error? errors.login_error : null,
   };
