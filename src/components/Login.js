@@ -1,14 +1,72 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
+import { handleUserLogin } from '../actions/authedUser'
 
 class Login extends React.Component {
+
+  state = {
+    id : '',
+    password : '',
+    formComplete : false,
+    showError : false
+  }
+
+  handleFormData = async (e) => {
+    e.preventDefault()
+    const { name, value } = e.target
+    if (name === 'id') {
+      await this.setState({
+        id : value,
+      })
+    }
+    else if (name === 'password') {
+      await this.setState({
+        password : value
+      })
+    }
+
+    const {id, password} = this.state
+    if (id !== '' && password !== '') {
+      await this.setState({
+        formComplete : true
+      })
+    }
+    else {
+      await this.setState({
+        formComplete : false
+      })
+    }
+
+  }
+
+  handleFormSubmit = async(e) => {
+    e.preventDefault()
+    const { dispatch } = this.props
+    const userId = this.state.id
+    const userPassword = this.state.password
+    if ( await dispatch(handleUserLogin({userId,userPassword})) ){
+      this.props.history.push(`/`)
+    }
+    else {
+      this.setState({showError:true})
+    }
+
+  }
+
+  handleShowError = () => {
+    this.setState({showError:false})
+  }
+
   render(){
+    const { formComplete, id, password, showError } = this.state
+    const { error } = this.props
     return (
       <div className = "ui center aligned container padded segment">
         <div className="ui middle aligned center aligned grid">
           <div className="medium column">
             <h2 className="ui teal image header">
-              <i class="sign-in icon"></i>
+              <i className="sign-in icon"></i>
               <div className="content">
                 Log-in to your account
               </div>
@@ -18,21 +76,44 @@ class Login extends React.Component {
                 <div className="field">
                   <div className="ui left icon input">
                     <i className="user icon"></i>
-                    <input type="text" name="id" placeholder="id" />
+                    <input
+                    type="text"
+                    name="id"
+                    placeholder="id"
+                    value = {id}
+                    onChange = {this.handleFormData}
+                    />
                   </div>
                 </div>
                 <div className="field">
                   <div className="ui left icon input">
                     <i className="lock icon"></i>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value = {password}
+                    onChange = {this.handleFormData}
+                    />
                   </div>
                 </div>
-                <div className="ui fluid large teal submit button">Login</div>
+                <div className= {
+                    formComplete
+                    ? "ui fluid large teal submit button"
+                    : "ui fluid large teal submit disabled button"
+                  }
+                  onClick = {this.handleFormSubmit}
+                  >Login
+                </div>
               </div>
 
-              <div className="ui error message"></div>
-
             </form>
+            <div className={(showError)? "ui error message" : "ui error message hidden"}>
+              <i className="close icon" onClick = {this.handleShowError}></i>
+              <div className="header">
+                {error? error : null}
+              </div>
+            </div>
 
             <div className="ui message">
               New to us?
@@ -47,4 +128,11 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+const mapStateToProps = ({errors}) => {
+  console.log('errors are: ',errors.login_error);
+  return {
+    error : errors.login_error? errors.login_error : null,
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Login))

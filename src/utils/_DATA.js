@@ -1,15 +1,11 @@
 import faker from 'faker'
 
-let authedUser = {
-  id : '',
-  name : '',
-  avatarURL : ''
-}
+let authedUser = null
 
 let users = {
   mostafa_fouad: {
     id: 'mostafa_fouad',
-    password : '',
+    password : 'ILoveReact',
     name: 'Mostafa Fouad',
     avatarURL: faker.image.avatar(),
     answers: {
@@ -240,46 +236,59 @@ export function _saveNewUser (user) {
             questions: [],
           }
         }
+        authedUser = {
+          id: users[id].id,
+          name : users[id].name,
+          avatarURL : users[id].avatarURL
+        }
 
         res(authedUser)
       }, 1000)
     }
     else {
       const error = 'Sorry this id is already used'
-      res(error)
+      rej(error)
     }
 
 
   })
 }
 
-export function _saveLogin (user) {
+export function _login (user) {
   return new Promise((res, rej) => {
-    const {authedId, password} = user;
-    if (users[authedId]) {
-      setTimeout(() => {
-        authedUser = {
-          id : authedId,
-          name : users[authedId].name,
-          avatarURL : users[authedId].avatarURL
-        }
+    const {userId, userPassword} = user;
+    if (users[userId]) {
+      const {id, password} = users[userId]
+      if (id === userId && password === userPassword) {
+        setTimeout(() => {
+          authedUser = {
+            id : userId,
+            name : users[userId].name,
+            avatarURL : users[userId].avatarURL
+          }
 
-        res(authedUser)
-      }, 1000)
+          res(authedUser)
+        }, 1000)
+      }
+      else {
+        const error = 'Sorry the id or password is incorrect'
+        rej(error)
+      }
+
+    }
+    else {
+      const error = 'Sorry the id is not found'
+      rej(error)
     }
 
 
   })
 }
 
-export function _logout (user) {
+export function _logout () {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      authedUser = {
-        id : null,
-        name : null,
-        avatarURL : '',
-      }
+      authedUser = null
       res(true)
     }, 1000)
 
