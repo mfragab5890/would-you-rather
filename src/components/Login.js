@@ -58,9 +58,15 @@ class Login extends React.Component {
     this.setState({showError:false})
   }
 
+  handleUserSelect = (e) => {
+    e.preventDefault()
+    const value = e.target.value
+    this.setState({id : value})
+  }
+
   render(){
     const { formComplete, id, password, showError } = this.state
-    const { error } = this.props
+    const { error, userIds} = this.props
     return (
       <div className = "ui center aligned container padded segment">
         <div className="ui middle aligned center aligned grid">
@@ -74,7 +80,7 @@ class Login extends React.Component {
             <form className="ui small form">
               <div className="ui stacked segment">
                 <div className="field">
-                  <div className="ui left icon input">
+                  <div className="ui action left icon input">
                     <i className="user icon"></i>
                     <input
                     type="text"
@@ -83,6 +89,22 @@ class Login extends React.Component {
                     value = {id}
                     onChange = {this.handleFormData}
                     />
+                  <select
+                    className="ui compact selection dropdown"
+                    defaultValue = 'all'
+                    onChange = {this.handleUserSelect}
+                    >
+                      <option value="all" disabled>All Users</option>
+                      {
+                        userIds.map(
+                          (user) => <option
+                            key = {user}
+                            value={user}
+                            >{user}
+                          </option>
+                        )
+                      }
+                    </select>
                   </div>
                 </div>
                 <div className="field">
@@ -128,9 +150,10 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({errors}) => {
+const mapStateToProps = ({users, errors}) => {
   return {
     error : errors.login_error? errors.login_error : null,
+    userIds : Object.keys(users)
   };
 }
 

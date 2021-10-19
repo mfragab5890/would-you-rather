@@ -262,9 +262,7 @@ export function _login (user) {
     if (users[userId]) {
       const {id, password} = users[userId]
       const isPasswordValid = await compareIt(userPassword, password)
-      console.log(isPasswordValid);
       if (id === userId && isPasswordValid === true) {
-        console.log('here');
         setTimeout(() => {
           authedUser = {
             id : userId,

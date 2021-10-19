@@ -1,4 +1,4 @@
-import { login } from '../utils/api'
+import { login, logout } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 import {setError} from './errors'
 
@@ -34,5 +34,16 @@ export const handleUserLogin = ({userId,userPassword}) => {
         dispatch(hideLoading())
         return false;
       })
+  };
+}
+
+export const handleUserLogout = () => {
+  return (dispatch) => {
+    dispatch(showLoading())
+    return logout().then((res) => {
+      dispatch(resetAuthedUser())
+      dispatch(hideLoading())
+      return res;
+    })
   };
 }

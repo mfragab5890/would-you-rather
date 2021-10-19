@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { handleUserLogout } from '../actions/authedUser'
 
 class NavBar extends React.Component {
   state = {
@@ -28,11 +29,9 @@ class NavBar extends React.Component {
 
   handleUserLogout = (e) => {
     e.preventDefault()
+    const { dispatch } = this.props
     if (window.confirm("Are you sure you want to logout?")) {
-      console.log(e);
-    }
-    else {
-      console.log('not logging out');
+      dispatch(handleUserLogout())
     }
   }
 
