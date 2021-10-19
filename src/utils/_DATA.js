@@ -222,9 +222,9 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
 }
 
 export function _saveNewUser (user) {
-  return new Promise((res, rej) => {
+  return new Promise(async (res, rej) => {
     const {id, name, password} = user;
-    const hashedPassword = hashIt(password)
+    const hashedPassword = await hashIt(password)
     if (!users[id]) {
       setTimeout(() => {
         users = {
@@ -238,13 +238,13 @@ export function _saveNewUser (user) {
             questions: [],
           }
         }
+
         authedUser = {
           id: users[id].id,
           name : users[id].name,
           avatarURL : users[id].avatarURL
         }
-
-        res(authedUser)
+        res(users[id])
       }, 1000)
     }
     else {

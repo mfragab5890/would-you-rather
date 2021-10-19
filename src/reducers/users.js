@@ -8,10 +8,11 @@ const users = (state = {}, action) => {
         ...action.users
       };
       case ADD_USER:
-        const {id} = action.user.id
+        const {user} = action
+        console.log(action);
         return {
           ...state,
-          [id] : { ...action.user }
+          [user.id] : { ...user },
         };
     default:
       return state;

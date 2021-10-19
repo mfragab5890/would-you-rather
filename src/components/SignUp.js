@@ -1,16 +1,103 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { handleSaveNewUser } from '../actions/users'
 
 class SignUp extends React.Component {
+
+
+  state = {
+    id : '',
+    name : '',
+    password : '',
+    passwordConfirm : '',
+    formComplete : false,
+    showError : false,
+    passwordError : false
+  }
+
+  handleFormData = async (e) => {
+    e.preventDefault()
+    const value = e.target.value
+    const inputName = e.target.name
+    if (inputName === 'id') {
+      await this.setState({
+        id : value,
+      })
+    }
+    else if (inputName === 'password') {
+      await this.setState({
+        password : value,
+      })
+    }
+    else if (inputName === 'name') {
+      await this.setState({
+        name : value,
+      })
+    }
+    else if (inputName === 'passwordConfirm') {
+      await this.setState({
+        passwordConfirm : value,
+      })
+    }
+
+    const {id, name, password, passwordConfirm} = this.state
+    if (id !== '' && name !== '' && password !== '' & passwordConfirm !== '') {
+      if ( password === passwordConfirm ) {
+        await this.setState({
+          formComplete : true,
+          passwordError : false,
+          showError : false,
+        })
+      }
+      else {
+        await this.setState({
+          formComplete : false,
+          passwordError : true,
+          showError : true
+        })
+      }
+    }
+    else {
+      await this.setState({
+        formComplete : false,
+        passwordError : false,
+        showError : false,
+      })
+    }
+
+  }
+
+  handleFormSubmit = async(e) => {
+    e.preventDefault()
+    const { dispatch } = this.props
+    const userId = this.state.id
+    const userPassword = this.state.password
+    const name = this.state.name
+    if ( await dispatch( handleSaveNewUser( userId, userPassword, name ) ) ){
+      this.props.history.push(`/`)
+    }
+    else {
+      this.setState({showError:true})
+    }
+
+  }
+
+  handleShowError = () => {
+    this.setState({showError:false})
+  }
+
   render(){
+    const { formComplete, id, name, password, showError, passwordError, passwordConfirm } = this.state
+    const { error } = this.props
     return (
       <div className = "ui center aligned container padded segment">
         <div className="ui middle aligned center aligned grid">
           <div className="medium column">
             <h2 className="ui teal image header">
-              <i class="icons">
-                <i class="user icon"></i>
-                <i class="bottom right corner add icon"></i>
+              <i className="icons">
+                <i className="user icon"></i>
+                <i className="bottom right corner add icon"></i>
               </i>
               <div className="content">
                  &nbsp;Sign Up to a new account!
@@ -21,27 +108,75 @@ class SignUp extends React.Component {
                 <div className="field">
                   <div className="ui left icon input">
                     <i className="user icon"></i>
-                    <input type="text" name="id" placeholder="id" required/>
+                      <input
+                      type="text"
+                      name="id"
+                      placeholder="Id"
+                      value = {id}
+                      onChange = {this.handleFormData}
+                      />
+                  </div>
+                </div>
+                <div className="field">
+                  <div className="ui left icon input">
+                    <i className="user icon"></i>
+                      <input
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      value = {name}
+                      onChange = {this.handleFormData}
+                      />
                   </div>
                 </div>
                 <div className="field">
                   <div className="ui left icon input">
                     <i className="lock icon"></i>
-                    <input type="password" name="password" placeholder="Password" required/>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value = {password}
+                      onChange = {this.handleFormData}
+                      required
+                      />
                   </div>
                 </div>
                 <div className="field">
                   <div className="ui left icon input">
                     <i className="lock icon"></i>
-                    <input type="password" name="confirmPassword" placeholder="confirm Password" required />
+                      <input
+                      type="password"
+                      name="passwordConfirm"
+                      placeholder="Confirm Password"
+                      value = {passwordConfirm}
+                      onChange = {this.handleFormData}
+                      required
+                      />
                   </div>
                 </div>
-                <div className="ui fluid large teal submit button">Sign Up!</div>
+                <div className= {
+                    formComplete
+                    ? "ui fluid large teal submit button"
+                    : "ui fluid large teal submit disabled button"
+                  }
+                  onClick = {this.handleFormSubmit}
+                  >Sign up and login
+                </div>
               </div>
 
-              <div className="ui error message"></div>
 
             </form>
+            <div className={(showError)? "ui error message" : "ui error message hidden"}>
+              <i className="close icon" onClick = {this.handleShowError}></i>
+              <div className="header">
+                Sorry there was errors!
+              </div>
+              <ul className="list">
+                { error ? <li>{error}</li> : null }
+                { passwordError ? <li>Password dosen't match</li> : null }
+              </ul>
+            </div>
 
             <div className="ui message">
               Already a user?
@@ -56,4 +191,10 @@ class SignUp extends React.Component {
   }
 }
 
-export default withRouter(SignUp)
+const mapStateToProps = ({errors}) => {
+  return {
+    error : errors.signup_error? errors.signup_error : null,
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(SignUp))
