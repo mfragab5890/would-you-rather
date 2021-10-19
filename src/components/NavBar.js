@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import faker from 'faker'
 
 class NavBar extends React.Component {
   state = {
@@ -39,6 +38,7 @@ class NavBar extends React.Component {
 
   render(){
     const { activeTab } = this.state
+    const { name, avatarURL } = this.props.authedUser
     return (
       <Fragment>
         <div className="ui secondary pointing center aligned menu">
@@ -54,8 +54,8 @@ class NavBar extends React.Component {
 
           <div className="right menu">
             <span className = "ui pointing blue basic label item">
-              <img className="ui tiny circular image" src={faker.image.avatar()} />
-              <div class="detail">welcome Mostafa Fouad</div>
+              <img className="ui tiny circular image" src={avatarURL} alt = 'avatar' />
+              <div className="detail">welcome {name}</div>
             </span>
 
             <button
@@ -74,7 +74,7 @@ class NavBar extends React.Component {
 
 const mapStateToProps = ({authedUser}) => {
   return {
-    loading : authedUser === null
+    authedUser
   };
 }
 
