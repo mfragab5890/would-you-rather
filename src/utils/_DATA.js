@@ -73,7 +73,7 @@ let questions = {
     author: 'johndoe',
     timestamp: 1468479767190,
     optionOne: {
-      votes: [],
+      votes: ['mostafa_fouad'],
       text: 'become a superhero',
     },
     optionTwo: {
