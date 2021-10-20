@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Route, Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Question from './Question'
 
 class Home extends React.Component {
@@ -41,7 +41,7 @@ class Home extends React.Component {
               className = {activeTab === 1 ? "active item" : "item"}
               onClick = {this.handleActiveTab}
               >
-                Answered Questions
+                Unanswered Questions
               </ Link>
               <Link
               id = 'unanswered'
@@ -49,17 +49,17 @@ class Home extends React.Component {
               className = {activeTab === 2 ? "active item" : "item"}
               onClick = {this.handleActiveTab}
               >
-                Unanswered Questions
+                Answered Questions
               </ Link>
             </div>
           </div>
-          <div className="twelve wide stretched column">
+          <div className="nine wide stretched column">
             <div className="ui segment ">
-              <div className="ui cards">
+              <div className = "ui list">
               {
-                activeTab === 1 ?
-                <Fragment>{answeredIds.map((id) => <Question key = { id } qId = { id }/> )}</Fragment>:
-                <Fragment>{unansweredIds.map((id) => <Question key = { id } qId = { id }/> )}</Fragment>
+                activeTab === 2 ?
+                <Fragment>{answeredIds.map((id) => <Question key = { id } qId = { id } answered = {true} /> )}</Fragment>:
+                <Fragment>{unansweredIds.map((id) => <Question key = { id } qId = { id } answered = {false} /> )}</Fragment>
               }
               </div>
             </div>
