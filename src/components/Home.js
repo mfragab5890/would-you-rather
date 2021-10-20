@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect, Link } from 'react-router-dom'
+import Question from './Question'
 
 class Home extends React.Component {
 
@@ -33,7 +34,7 @@ class Home extends React.Component {
       <div className="ui segment">
         <div className="ui grid">
           <div className="four wide column">
-            <div className="ui vertical fluid tabular menu">
+            <div className="ui vertical fluid tabular mini menu">
               <Link
               id = 'answered'
               to = '/'
@@ -54,13 +55,13 @@ class Home extends React.Component {
           </div>
           <div className="twelve wide stretched column">
             <div className="ui segment ">
-              <ul>
+              <div className="ui cards">
               {
                 activeTab === 1 ?
-                <div>{answeredIds.map((id) => <li>{id}</li> )}</div>:
-                <div>{unansweredIds.map((id) => <li>{id}</li> )}</div>
+                <Fragment>{answeredIds.map((id) => <Question key = { id } qId = { id }/> )}</Fragment>:
+                <Fragment>{unansweredIds.map((id) => <Question key = { id } qId = { id }/> )}</Fragment>
               }
-              </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -78,7 +79,6 @@ const mapStateToProps = ({questions, authedUser}) => {
   })
   const unansweredIds = Object.keys(questions)
   .sort( (a,b) => questions[b].timestamp - questions[a].timestamp ).filter((id) => {
-    console.log(questions[id].optionOne.votes.includes(authedId));
     return !questions[id].optionOne.votes.includes(authedId) && !questions[id].optionTwo.votes.includes(authedId)
   })
   return {

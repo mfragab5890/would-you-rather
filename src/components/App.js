@@ -27,7 +27,7 @@ class App extends React.Component {
           <NavBar />
           {
             !loading ?
-              <Fragment>
+              <div>
                 <Route exact path='/' render ={() =>{
                   return (
                     <Home />
@@ -50,7 +50,7 @@ class App extends React.Component {
                   }
                 }
                 />
-              </Fragment>
+            </div>
 
             :<Route exact path='/' render ={() =>{
                 return (
