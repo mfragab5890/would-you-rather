@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
+import Loader from './Loader'
 import NavBar from './NavBar'
 import Login from './Login'
 import SignUp from './SignUp'
+import Home from './Home'
+import NewQuestion from './NewQuestion'
+import LeaderBoard from './LeaderBoard'
 
 class App extends React.Component {
 
@@ -21,27 +25,46 @@ class App extends React.Component {
         <Fragment>
           <LoadingBar />
           <NavBar />
-          <Route exact path='/' render ={() =>
-              {
-                if (!loading) {
+          {
+            !loading ?
+              <Fragment>
+                <Route exact path='/' render ={() =>{
                   return (
-                    <div className="ui segment">
-                      <p>app here</p>
-                    </div>
-                  );
-                }
-                else {
-                  return (
-                    <div className="ui segment">
-                      <p>Loading....</p>
-                    </div>
-                  );
-                }
-            }
+                    <Home />
+                    );
+                  }
 
+                }
+                />
+              <Route exact path='/new-question' render ={() =>{
+                  return (
+                    <NewQuestion />
+                    );
+                  }
+                }
+                />
+              <Route exact path='/leader-board' render ={() =>{
+                  return (
+                    <LeaderBoard />
+                    );
+                  }
+                }
+                />
+              </Fragment>
+
+            :<Route exact path='/' render ={() =>{
+                return (
+                  <div className="ui segment">
+                    <Loader />
+                  </div>
+                  );
+                }
+
+              }
+              />
 
           }
-        />
+
       </Fragment>
 
       );
