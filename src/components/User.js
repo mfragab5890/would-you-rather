@@ -23,6 +23,9 @@ class User extends React.Component {
     else if (rank === 2) {
       rankClass = "shield alternate brown icon"
     }
+    else {
+      rankClass = "user blue icon"
+    }
 
     return (
       <div className="ui stackable olive piled segment container">
