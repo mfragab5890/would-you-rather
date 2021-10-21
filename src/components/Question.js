@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 
@@ -12,25 +12,24 @@ class Question extends React.Component {
     const { user, answered, qId, answer } = this.props
     return (
       <div className="ui centered olive piled segment">
-        <div class="ui stackable internally celled grid container">
-          <div class="row">
-            <div class="ten wide column"><h3 class="ui header">{user.name} asks:</h3></div>
+        <div className="ui stackable internally celled grid container">
+          <div className="row">
+            <div className="ten wide column"><h3 className="ui header">{user.name} asks:</h3></div>
           </div>
-          <div class="row">
-            <div class="four wide column">
-              <img class="ui tiny centered circular image" src={user.avatarURL} alt = 'avatar' />
+          <div className="row">
+            <div className="four wide column">
+              <img className="ui tiny centered circular image" src={user.avatarURL} alt = 'avatar' />
             </div>
-            <div class="nine wide column">
-              <h4 class="ui header">Would you rather!</h4>
+            <div className="nine wide column">
+              <h4 className="ui header">Would you rather!</h4>
               <h5 className = "ui disabled header">...{answer}...</h5>
-              <button class="fluid ui basic labeled icon button">
-                <i class="eye icon"></i>
+              <button className="fluid ui basic labeled icon button">
+                <i className="eye icon"></i>
                 View Poll
               </button>
             </div>
           </div>
         </div>
-
       </div>
 
 
