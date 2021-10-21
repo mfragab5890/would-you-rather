@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
-
+import User from './User'
 class LeaderBoard extends React.Component {
 
   componentDidMount() {
@@ -9,17 +9,31 @@ class LeaderBoard extends React.Component {
   }
 
   render(){
+    const {topUsers} = this.props
     return (
-      <div className="ui segment">
-        <p>LeaderBoard</p>
+      <div className = "ui segment container">
+        <div className = "ui grid">
+          <div className="two wide column"></div>
+          <div className="eleven wide stretched column">
+            {topUsers.map((user,i) => <User key = {user.id} user = {user} rank = {i}/>)}
+          </div>
+          <div className="two wide column"></div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = ({users}) => {
+  const usersIds = Object.keys(users)
+  const usersRank = usersIds.sort( (a,b) => {
+    return (users[b].questions.length + Object.keys(users[b].answers).length) - (users[a].questions.length + Object.keys(users[a].answers).length);
+  } )
+  const topIds = usersRank.slice(0 , 3)
+  const topUsers = topIds.map((id) => users[id])
+  console.log(topUsers);
   return {
-
+    topUsers,
   };
 }
 
