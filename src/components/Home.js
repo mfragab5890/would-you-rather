@@ -34,7 +34,7 @@ class Home extends React.Component {
       <div className="ui segment">
         <div className="ui grid">
           <div className="four wide column">
-            <div className="ui vertical fluid tabular mini menu">
+            <div className="ui vertical tabular mini menu">
               <Link
               id = 'answered'
               to = '/'

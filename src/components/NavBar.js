@@ -39,8 +39,8 @@ class NavBar extends React.Component {
     const { activeTab } = this.state
     const { name, avatarURL } = this.props.authedUser
     return (
-      <Fragment>
-        <div className="ui fluid top attached secondary pointing center aligned small menu">
+      <div className = "ui fluid container">
+        <div className="ui stackable secondary pointing center aligned small menu">
           <Link id = 'home' to = '/' className={ activeTab === 1 ? "active item" : " fitted item" } onClick = {this.handleActiveTab}>
             Home
           </Link>
@@ -66,7 +66,7 @@ class NavBar extends React.Component {
 
           </div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

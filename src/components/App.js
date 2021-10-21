@@ -25,6 +25,7 @@ class App extends React.Component {
         <Fragment>
           <LoadingBar />
           <NavBar />
+          <div className = "ui main text container">
           {
             !loading ?
               <div>
@@ -64,7 +65,7 @@ class App extends React.Component {
               />
 
           }
-
+        </div>
       </Fragment>
 
       );

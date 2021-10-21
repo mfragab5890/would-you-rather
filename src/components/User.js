@@ -28,37 +28,35 @@ class User extends React.Component {
     }
 
     return (
-      <div className="ui stackable olive piled segment container">
-        <div className="ui left corner label">
+      <div className="ui stackable blue stacked center aligned segment container">
+        <div className="ui left corner black label">
           <i className={rankClass}></i>
         </div>
         <div className="ui stackable internally celled grid container">
           <div className="centered row">
-            <div className="centered three wide column">
-              <img className="ui circular centered medium image" src={user.avatarURL} alt = 'avatar' />
+            <div className="centered four wide column">
+              <img className="ui circular centered image" src={user.avatarURL} alt = 'avatar' />
             </div>
-            <div className="centered six wide column">
+            <div className="centered five wide column">
               <h3 className="ui header">{user.name}</h3>
               <h5 className="ui header">
                 Answered Questions
-                <div className="ui right floated left pointing label disabled green button">
+                <div className="ui right floated left pointing label blue button" style = {{cursor:'default'}}>
                   <span >{answeredQuestions}</span>
                 </div>
               </h5>
               <h5 className="ui header">
                 Created Questions
-                <div className="ui right floated left pointing label disabled green button">
+                <div className="ui right floated left pointing label blue button" style = {{cursor:'default'}}>
                   <span >{createdQuestions}</span>
                 </div>
               </h5>
             </div>
-            <div className="centered three wide column">
-              <div className = "ui center aligned orange compact segment">
+            <div className="centered four wide column">
+              <div className = "centered ui center aligned black segment">
                 Score
-                <div className = "ui center aligned grey compact segment">
-                  <div className = "circular compact ui disabled green tiny button">
-                    {score}
-                  </div>
+                <div className = "ui center aligned red segment">
+                  <div class="ui blue circular big label">{score}</div>
                 </div>
               </div>
             </div>

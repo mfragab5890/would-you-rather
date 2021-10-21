@@ -68,7 +68,7 @@ class Login extends React.Component {
     const { formComplete, id, password, showError } = this.state
     const { error, userIds} = this.props
     return (
-      <div className = "ui center aligned container padded segment">
+      <div className = "ui main text container segment">
         <div className="ui middle aligned center aligned grid">
           <div className="medium column">
             <h2 className="ui teal image header">

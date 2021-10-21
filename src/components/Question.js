@@ -11,7 +11,7 @@ class Question extends React.Component {
   render(){
     const { user, answered, qId, answer } = this.props
     return (
-      <div className="ui centered olive piled segment">
+      <div className="ui centered teal stacked segment">
         <div className="ui stackable internally celled grid container">
           <div className="row">
             <div className="ten wide column"><h3 className="ui header">{user.name} asks:</h3></div>
