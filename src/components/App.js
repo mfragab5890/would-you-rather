@@ -36,14 +36,14 @@ class App extends React.Component {
 
                 }
                 />
-              <Route exact path='/new-question' render ={() =>{
+              <Route exact path='/add' render ={() =>{
                   return (
                     <NewQuestion />
                     );
                   }
                 }
                 />
-              <Route exact path='/leader-board' render ={() =>{
+              <Route exact path='/leaderboard' render ={() =>{
                   return (
                     <LeaderBoard />
                     );

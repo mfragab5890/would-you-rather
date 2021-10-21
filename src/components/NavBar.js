@@ -44,10 +44,10 @@ class NavBar extends React.Component {
           <Link id = 'home' to = '/' className={ activeTab === 1 ? "active item" : " fitted item" } onClick = {this.handleActiveTab}>
             Home
           </Link>
-          <Link id = 'new_question' to = '/new-question' className={ activeTab === 2 ? "active item" : "fitted item" } onClick = {this.handleActiveTab}>
+          <Link id = 'new_question' to = '/add' className={ activeTab === 2 ? "active item" : "fitted item" } onClick = {this.handleActiveTab}>
             New Question
           </Link>
-          <Link id = 'leader_board' to = '/leader-board' className={ activeTab === 3 ? "active item" : "fitted item" } onClick = {this.handleActiveTab}>
+          <Link id = 'leader_board' to = '/leaderboard' className={ activeTab === 3 ? "active item" : "fitted item" } onClick = {this.handleActiveTab}>
           Leader Board
           </Link>
 
