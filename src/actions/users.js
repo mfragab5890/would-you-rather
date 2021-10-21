@@ -6,6 +6,8 @@ import { setAuthedUser, resetAuthedUser } from './authedUser'
 
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER = 'ADD_USER'
+export const ADD_QUESTION = 'ADD_QUESTION'
+export const ADD_ANSWER = 'ADD_ANSWER'
 
 export const receiveUsers = (users) => {
   return {
@@ -18,6 +20,13 @@ export const addUser = (user) => {
   return {
     type : ADD_USER,
     user,
+  };
+}
+
+export const addAnswer = (info) => {
+  return {
+    type : ADD_ANSWER,
+    info,
   };
 }
 

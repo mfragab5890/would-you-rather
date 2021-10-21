@@ -2,7 +2,7 @@
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
-export const ADD_QUESTION_ANSWER = 'ADD_QUESTION_ANSWER'
+export const ADD_ANSWER = 'ADD_QUESTION_ANSWER'
 
 export const addQuestion = (question) => {
   return {
@@ -18,9 +18,9 @@ export const receiveQuestions = (questions) => {
   };
 }
 
-export const addQuestionAnswer = (question) => {
+export const addAnswer = (info) => {
   return {
-    type : ADD_QUESTION_ANSWER,
-    question,
+    type : ADD_ANSWER,
+    info,
   };
 }

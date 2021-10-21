@@ -7,12 +7,12 @@ const questions = (state = {}, action) => {
         ...state,
         ...action.questions
       };
-        case ADD_QUESTION:
-          const {question} = action
-          return {
-            ...state,
-            [question.id] : question,
-          };
+    case ADD_QUESTION:
+      const {question} = action
+      return {
+        ...state,
+        [question.id] : question,
+      };
     default:
       return state;
   }

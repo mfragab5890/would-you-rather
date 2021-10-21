@@ -91,7 +91,7 @@ class SignUp extends React.Component {
     const { formComplete, id, name, password, showError, passwordError, passwordConfirm } = this.state
     const { error } = this.props
     return (
-      <div className = "ui center aligned container padded segment">
+      <div className = "ui main text container segment">
         <div className="ui middle aligned center aligned grid">
           <div className="medium column">
             <h2 className="ui teal image header">

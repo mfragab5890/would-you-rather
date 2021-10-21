@@ -214,8 +214,10 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
           }
         }
       }
+      const user = user[authedUser]
+      const question = questions[qid]
 
-      res()
+      res(user, question)
     }, 500)
   })
 }
