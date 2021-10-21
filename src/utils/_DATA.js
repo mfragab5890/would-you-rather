@@ -12,7 +12,6 @@ let users = {
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionOne',
-
     },
     questions: ['8xf0y6ziyjabvozdd253nd']
   },
