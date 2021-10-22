@@ -56,10 +56,10 @@ let users = {
 let questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
-    author: 'sarahedo',
+    author: 'mostafa_fouad',
     timestamp: 1467166872634,
     optionOne: {
-      votes: ['sarahedo'],
+      votes: ['sarahedo','mostafa_fouad'],
       text: 'have horrible short term memory',
     },
     optionTwo: {
@@ -72,7 +72,7 @@ let questions = {
     author: 'johndoe',
     timestamp: 1468479767190,
     optionOne: {
-      votes: ['mostafa_fouad'],
+      votes: [],
       text: 'become a superhero',
     },
     optionTwo: {
@@ -111,7 +111,7 @@ let questions = {
     author: 'tylermcginnis',
     timestamp: 1489579767190,
     optionOne: {
-      votes: ['tylermcginnis'],
+      votes: ['tylermcginnis', 'mostafa_fouad'],
       text: 'find $50 yourself',
     },
     optionTwo: {
