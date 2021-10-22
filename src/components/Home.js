@@ -9,10 +9,6 @@ class Home extends React.Component {
     activeTab:1
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   handleActiveTab = (e) => {
     const {id} = e.target
     if (id === 'answered') {
