@@ -25,7 +25,6 @@ class Login extends React.Component {
         password : value
       })
     }
-
     const {id, password} = this.state
     if (id !== '' && password !== '') {
       await this.setState({
