@@ -26,6 +26,7 @@ class App extends React.Component {
         <Fragment>
           <LoadingBar />
           <NavBar />
+          <br />
           <div className = "ui main text container">
           {
             !loading ?

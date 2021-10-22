@@ -13,11 +13,14 @@ class LeaderBoard extends React.Component {
     return (
       <div className = "ui segment container">
         <div className = "ui grid">
-          <div className="wide column"></div>
-          <div className="sixteen wide stretched column">
-            {topUsers.map((user,i) => <User key = {user.id} user = {user} rank = {i}/>)}
+          <div className = "row">
+            <div className="wide column"></div>
+            <div className="sixteen wide stretched column">
+              {topUsers.map((user,i) => <User key = {user.id} user = {user} rank = {i}/>)}
+            </div>
+            <div className="wide column"></div>
           </div>
-          <div className="wide column"></div>
+
         </div>
       </div>
     );
