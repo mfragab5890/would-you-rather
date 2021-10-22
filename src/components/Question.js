@@ -4,13 +4,7 @@ import { Route, withRouter } from 'react-router-dom'
 import ViewQuestion from './ViewQuestion'
 
 class Question extends React.Component {
-  state = {
-    viewPoll : false
-  }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
   handleViewPoll = async(e) => {
     e.preventDefault()
     const { history, qId } = this.props
