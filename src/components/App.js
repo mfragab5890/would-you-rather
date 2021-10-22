@@ -10,6 +10,7 @@ import SignUp from './SignUp'
 import Home from './Home'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
+import ViewQuestion from './ViewQuestion'
 
 class App extends React.Component {
 
@@ -51,6 +52,7 @@ class App extends React.Component {
                   }
                 }
                 />
+              <Route exact path='/questions/:qId' component = { ViewQuestion } />
             </div>
 
             :<Route exact path='/' render ={() =>{
