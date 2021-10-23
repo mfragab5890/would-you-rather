@@ -51,7 +51,7 @@ function User (props) {
             <div className = "centered ui center aligned black segment">
               Score
               <div className = "ui center aligned red segment">
-                <div class="ui blue circular big label">{score}</div>
+                <div className="ui blue circular big label">{score}</div>
               </div>
             </div>
           </div>
