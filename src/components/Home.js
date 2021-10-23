@@ -54,8 +54,8 @@ class Home extends React.Component {
               <div className = "ui list">
               {
                 activeTab === 2 ?
-                <Fragment>{answeredIds.map((id) => <Question key = { id } qId = { id } answered = {true} /> )}</Fragment>:
-                <Fragment>{unansweredIds.map((id) => <Question key = { id } qId = { id } answered = {false} /> )}</Fragment>
+                <Fragment>{answeredIds.length > 0 ? answeredIds.map((id) => <Question key = { id } qId = { id } answered = {true} /> ) : 'sorry you have no unanswered questions'}</Fragment>:
+                <Fragment>{unansweredIds.length > 0 ? unansweredIds.map((id) => <Question key = { id } qId = { id } answered = {false} /> ): 'sorry you have no answered questions'}</Fragment>
               }
               </div>
             </div>
