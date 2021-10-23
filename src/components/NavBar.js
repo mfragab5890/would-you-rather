@@ -1,30 +1,59 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter} from 'react-router-dom'
 import { handleUserLogout } from '../actions/authedUser'
 
 class NavBar extends React.Component {
   state = {
-    activeTab : 1,
+    activeTab : 0,
+    location : '/'
   }
 
-  handleActiveTab = (e) => {
+  handleActiveTab = async(e) => {
     const {id} = e.target
     if (id === 'home') {
-      this.setState({
+      await this.setState({
         activeTab : 1
       })
     }
     else if (id === 'new_question') {
-      this.setState({
+      await this.setState({
         activeTab : 2
       })
     }
     else if (id === 'leader_board') {
-      this.setState({
+      await this.setState({
         activeTab : 3
       })
     }
+  }
+
+  async componentDidUpdate(){
+    const current_location = this.props.history.location.pathname
+    const {activeTab} = this.state
+    if (current_location === '/' && activeTab !== 1) {
+      await this.setState({
+        activeTab : 1
+      })
+    }
+    else if (current_location === '/add' && activeTab !== 2){
+      await this.setState({
+        activeTab : 2
+      })
+    }
+    else if (current_location === '/leaderboard' && activeTab !== 3){
+      await this.setState({
+        activeTab : 3
+      })
+    }
+    else if(!['/', '/add', '/leaderboard'].includes(current_location) && activeTab !== 0){
+      await this.setState({
+        activeTab : 0
+      })
+    }
+
+    console.log(current_location);
+
   }
 
   handleUserLogout = (e) => {
@@ -77,4 +106,4 @@ const mapStateToProps = ({authedUser}) => {
   };
 }
 
-export default connect(mapStateToProps)(NavBar)
+export default withRouter(connect(mapStateToProps)(NavBar))
