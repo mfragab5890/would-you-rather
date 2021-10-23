@@ -74,6 +74,9 @@ class SignUp extends React.Component {
     const userId = this.state.id
     const userPassword = this.state.password
     const name = this.state.name
+    this.setState({
+      formComplete : false
+    })
     if ( await dispatch( handleSaveNewUser( userId, userPassword, name ) ) ){
       this.props.history.push(`/`)
     }

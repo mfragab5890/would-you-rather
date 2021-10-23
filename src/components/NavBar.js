@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter} from 'react-router-dom'
 import { handleUserLogout } from '../actions/authedUser'
@@ -51,9 +51,6 @@ class NavBar extends React.Component {
         activeTab : 0
       })
     }
-
-    console.log(current_location);
-
   }
 
   handleUserLogout = (e) => {

@@ -44,6 +44,9 @@ class Login extends React.Component {
     const { dispatch } = this.props
     const userId = this.state.id
     const userPassword = this.state.password
+    this.setState({
+      formComplete : false
+    })
     if ( await dispatch(handleUserLogin({userId,userPassword})) ){
       this.props.history.push(`/`)
     }

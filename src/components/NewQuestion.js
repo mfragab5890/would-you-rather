@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {handleAddQuestion} from '../actions/shared'
@@ -56,7 +56,7 @@ class NewQuestion extends React.Component {
   }
 
   render(){
-    const {optionOne, optionTwo, formComplete, toHome} = this.state
+    const {optionOne, optionTwo, formComplete } = this.state
     return (
       <div className="ui segment">
         <h3 className="ui center aligned icon blue header">

@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Route, Redirect } from 'react-router-dom'
 import User from './User'
 
 function LeaderBoard(props){

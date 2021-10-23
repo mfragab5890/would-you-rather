@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Route, withRouter } from 'react-router-dom'
-import ViewQuestion from './ViewQuestion'
+import { withRouter } from 'react-router-dom'
 
 class Question extends React.Component {
 
@@ -12,7 +11,7 @@ class Question extends React.Component {
   }
 
   render(){
-    const { user, answered, qId, answer } = this.props
+    const { user, qId, answer } = this.props
     return (
       <div className="ui centered teal stacked segment">
         <div className="ui stackable internally celled grid container">

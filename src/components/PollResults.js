@@ -14,18 +14,18 @@ function PollResults(props) {
           <div className = "row">
               <div className = "middle aligned six wide ui column container">
                 <div className = "ui circular blue compact segment">
-                  <img class="ui avatar massive image" src={user.avatarURL} alt = "avatar"/>
+                  <img className="ui avatar massive image" src={user.avatarURL} alt = "avatar"/>
                 </div>
               </div>
               <div className = "centered nine wide column container">
-                <div class="ui medium header">Results:</div>
+                <div className="ui medium header">Results:</div>
                 <div className = "ui brown segment">
                 {
                   answered === 'optionOne'
-                  ?<div class="floating ui yellow circular label">Your<br/>Vote</div>
+                  ?<div className="floating ui yellow circular label">Your<br/>Vote</div>
                   :null
                 }
-                  <div class="ui small header">Would you rather {question.optionOne.text}</div>
+                  <div className="ui small header">Would you rather {question.optionOne.text}</div>
                   <Progress
                     percent = {Math.floor(oneVotes*100/allVotes)}
                     indicating
@@ -38,10 +38,10 @@ function PollResults(props) {
                 <div className = "ui red segment">
                 {
                   answered === 'optionTwo'
-                  ?<div class="floating ui yellow circular label">Your<br/>Vote</div>
+                  ?<div className="floating ui yellow circular label">Your<br/>Vote</div>
                   :null
                 }
-                  <div class="ui small header">Would you rather {question.optionTwo.text}</div>
+                  <div className="ui small header">Would you rather {question.optionTwo.text}</div>
                   <Progress
                   percent = {Math.floor(twoVotes*100/allVotes)}
                   indicating
