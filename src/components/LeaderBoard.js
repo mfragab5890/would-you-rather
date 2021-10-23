@@ -2,30 +2,25 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 import User from './User'
-class LeaderBoard extends React.Component {
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+function LeaderBoard(props){
 
-  render(){
-    const {topUsers} = this.props
-    return (
-      <div className = "ui segment container">
-        <div className = "ui grid">
-          <div className = "row">
-            <div className="wide column"></div>
-            <div className="sixteen wide stretched column">
-              {topUsers.map((user,i) => <User key = {user.id} user = {user} rank = {i}/>)}
-            </div>
-            <div className="wide column"></div>
+  const {topUsers} = props
+  return (
+    <div className = "ui segment container">
+      <div className = "ui grid">
+        <div className = "row">
+          <div className="wide column"></div>
+          <div className="sixteen wide stretched column">
+            {topUsers.map((user,i) => <User key = {user.id} user = {user} rank = {i}/>)}
           </div>
-
+          <div className="wide column"></div>
         </div>
+
       </div>
-    );
+    </div>
+  );
   }
-}
 
 const mapStateToProps = ({users}) => {
   const usersIds = Object.keys(users)
@@ -34,7 +29,6 @@ const mapStateToProps = ({users}) => {
   } )
   const topIds = usersRank.slice(0 , 3)
   const topUsers = topIds.map((id) => users[id])
-  console.log(topUsers);
   return {
     topUsers,
   };

@@ -11,10 +11,6 @@ class NewQuestion extends React.Component {
     formComplete: false,
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   handleInputChange = async(e) => {
     e.preventDefault()
     const {name, value} = e.target

@@ -12,19 +12,30 @@ class ViewQuestion extends React.Component {
 
   render(){
     const { question, user, answered } = this.props
-    if (answered !== null) {
-      return (
-        <div className="ui centered teal stacked segment">
-          <PollResults question = {question} answered = {answered} user = {user}/>
+    return (
+      <div class="ui three column grid">
+        <div class="row">
+          <div class="column">
+            <img />
+          </div>
+          <div class="fifteen wide column container">
+            {
+              answered !== null
+              ? <div className="ui fluid centered teal stacked segment container">
+                  <PollResults question = {question} answered = {answered} user = {user}/>
+                </div>
+              : <div className="ui centered teal stacked segment">
+                  <PollAnswer question = {question} user = {user} /> optionOne: {question.optionOne.text} optionTwo: {question.optionTwo.text}
+                </div>
+            }
+          </div>
+          <div class="column">
+            <img />
+          </div>
         </div>
-      );
-    } else {
-      return (
-        <div className="ui centered teal stacked segment">
-          <PollAnswer question = {question} user = {user} /> optionOne: {question.optionOne.text} optionTwo: {question.optionTwo.text}
-        </div>
-      );
-    }
+      </div>
+    );
+
   }
 }
 

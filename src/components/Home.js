@@ -27,7 +27,7 @@ class Home extends React.Component {
     const { activeTab } = this.state
     const { answeredIds, unansweredIds } = this.props
     return (
-      <div className="ui segment">
+      <div className="ui container segment">
         <div className="ui grid">
           <div className="four wide column">
             <div className="ui vertical tabular mini menu">
@@ -49,7 +49,7 @@ class Home extends React.Component {
               </ Link>
             </div>
           </div>
-          <div className="nine wide stretched column">
+          <div className="twelve wide column">
             <div className="ui segment ">
               <div className = "ui list">
               {
