@@ -66,9 +66,19 @@ class Login extends React.Component {
     this.setState({id : value})
   }
 
+  checkAutoFormComplete = async() => {
+    const {id, password, formComplete} = this.state
+    if (id !== '' && password !== '' && formComplete !== true) {
+      await this.setState({
+        formComplete : true
+      })
+    }
+  }
+
   render(){
     const { formComplete, id, password, showError } = this.state
     const { error, userIds} = this.props
+    this.checkAutoFormComplete()
     return (
       <div className = "ui main text container segment">
         <div className="ui middle aligned center aligned grid">
