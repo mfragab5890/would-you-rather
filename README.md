@@ -35,9 +35,9 @@ or
 yarn start
 ```
 ## Login into the App
-Once App is started you will be directed to login page you can choose from any users and use our
+Once App is started you will be directed to login page you can choose from any users and use our default password : 
 ```bash
-default password : ILoveReact
+ILoveReact
 ```
 or simply signup to a new user
 
