@@ -1,5 +1,8 @@
 # Would You Rather Project
 
+## Live Site
+https://would-you-rather-lac.vercel.app/
+
 ## Getting Started
 
 ### Installing Dependencies
@@ -35,7 +38,7 @@ or
 yarn start
 ```
 ## Login into the App
-Once App is started you will be directed to login page you can choose from any users and use our default password : 
+Once App is started you will be directed to login page you can choose from any users and use our default password :
 ```bash
 ILoveReact
 ```
