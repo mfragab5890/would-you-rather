@@ -12,30 +12,28 @@ or
 yarn install
 ```
 ##### Key Dependencies
+- [bcryptjs](https://github.com/dcodeIO/bcrypt.js#readme) to handle user password encryption and and password compare.
+- [Faker](https://github.com/Marak/faker.js/blob/master/Readme.md) to add random fake avatar to users.
+- [React](https://reactjs.org/) to create our app
+- [React-dom](https://reactjs.org/docs/react-dom.html) The react-dom package provides DOM-specific methods that can be used at the top level of our app
+- [React-redux](https://react-redux.js.org/) to connect and provide our components with required props
+- [react-router-dom](https://reactrouter.com/) to handle routes and links and more
+- [React-scripts](https://github.com/facebook/create-react-app#readme)This package includes scripts and configuration used by Create React App
+- [React-redux-loading](https://github.com/tylermcginnis/react-redux-loading-bar)handle show/hide loading bar
+- [Redux](https://redux.js.org/) to create and handle our store
+- [Redux-thunk](https://github.com/reduxjs/redux-thunk/blob/master/README.md) to handle redux middleware
+- [Semantic-ui-css](https://react.semantic-ui.com/) handle our app styles and themes
+- [Semantic-ui-react](https://react.semantic-ui.com/) handle js part for semantic ui css and provides styled react components
+## Running the App
 
-- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
-
-- [SQLAlchemy](https://www.sqlalchemy.org/) and [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) are libraries to handle the lightweight sqlite database. Since we want you to focus on auth, we handle the heavy lift for you in `./src/database/models.py`. We recommend skimming this code first so you know how to interface with the Drink model.
-
-- [jose](https://python-jose.readthedocs.io/en/latest/) JavaScript Object Signing and Encryption for JWTs. Useful for encoding, decoding, and verifying JWTS.
-
-## Running the server
-
-From within the `./src` directory first ensure you are working using your created virtual environment.
-
-Each time you open a new terminal session, run:
-
+From within the `./would-you-rather` directory open a new terminal and run:
 ```bash
-export FLASK_APP=api.py;
+npm start
 ```
-
-To run the server, execute:
-
+or
 ```bash
-flask run --reload
+yarn start
 ```
-
-The `--reload` flag will detect file changes and restart the server automatically.
 
 ## Data
 
