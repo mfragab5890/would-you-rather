@@ -23,13 +23,6 @@ export const addUser = (user) => {
   };
 }
 
-export const addAnswer = (info) => {
-  return {
-    type : ADD_ANSWER,
-    info,
-  };
-}
-
 export const handleSaveNewUser = (id, password, name ) => {
   return (dispatch) => {
     dispatch(showLoading())

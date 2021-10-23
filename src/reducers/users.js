@@ -23,14 +23,14 @@ const users = (state = {}, action) => {
         },
       };
     case ADD_ANSWER:
-    const {data} = action
+    const {qId, answer, authedUser} = action.info
     return{
       ...state,
-      [data.userId] : {
-        ...state[data.userId],
+      [authedUser] : {
+        ...state[authedUser],
         answers : {
-          ...state[data.userId].answers,
-          [data.questionId] : data.answer,
+          ...state[authedUser].answers,
+          [qId] : answer,
         }
       }
     }

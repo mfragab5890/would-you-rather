@@ -2,7 +2,7 @@
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
-export const ADD_ANSWER = 'ADD_QUESTION_ANSWER'
+export const ADD_ANSWER = 'ADD_ANSWER'
 
 export const addQuestion = (question) => {
   return {
