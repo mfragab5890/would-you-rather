@@ -74,11 +74,13 @@ class Login extends React.Component {
       })
     }
   }
+  componentDidUpdate(){
+    this.checkAutoFormComplete()
+  }
 
   render(){
     const { formComplete, id, password, showError } = this.state
     const { error, userIds} = this.props
-    this.checkAutoFormComplete()
     return (
       <div className = "ui main text container segment">
         <div className="ui middle aligned center aligned grid">
