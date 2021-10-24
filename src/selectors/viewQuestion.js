@@ -7,16 +7,16 @@ const selectQuestionId = (_, props) => props.match.params.qId
 const selectQuestion = createSelector(
   selectQuestions,
   selectQuestionId,
-  (questions,qId) => questions[qId]
+  (questions,qId) => questions[qId] ? questions[qId] : null
 )
 const selectAuthor = createSelector(
   selectQuestion,
-  (question) => question.author
+  (question) => question ? question.author: null
 )
 const selectUser = createSelector(
   selectUsers,
   selectAuthor,
-  (users,author) => users[author]
+  (users,author) => author ? users[author] : null
 )
 const selectAnswered = createSelector(
   selectUsers,

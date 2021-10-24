@@ -6,8 +6,9 @@ import Error from './Error'
 import viewQuestionSelector from '../selectors/viewQuestion'
 
 function ViewQuestion(props) {
-  const { question, user, answered, error } = props
+  const { error } = props
   if (!error) {
+    const { question, user, answered} = props
     return (
       <div className="ui three column grid">
         <div className="row">
