@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Route, Redirect,withRouter } from 'react-router-dom'
+import { Route, Redirect, withRouter, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 import Loader from './Loader'
@@ -39,7 +39,7 @@ class App extends React.Component {
           <div className = "ui main text container">
           {
             !loading ?
-              <div>
+              <Switch>
                 <Route exact path='/' render ={() =>{
                   return (
                     <Home />
@@ -63,14 +63,14 @@ class App extends React.Component {
                 }
                 />
               <Route exact path='/questions/:qId' component = { ViewQuestion } />
-              <Route path='*' exact={true} render ={() =>{
+              <Route path='*' render ={() =>{
                   return (
                     <Error message = "Sorry This Page Doesn't exist" />
                     );
                   }
                 }
                 />
-            </div>
+            </Switch>
 
             :<Route exact path='/' render ={() =>{
                 return (
