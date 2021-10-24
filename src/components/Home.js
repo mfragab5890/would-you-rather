@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Question from './Question'
+import selectHomeState from '../selectors/home'
 
 class Home extends React.Component {
 
@@ -74,17 +75,8 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({questions, authedUser}) => {
-
-  const authedId = authedUser.id
-  const answeredIds = Object.keys(questions)
-  .sort( (a,b) => questions[b].timestamp - questions[a].timestamp ).filter((id) => {
-    return questions[id].optionOne.votes.includes(authedId) || questions[id].optionTwo.votes.includes(authedId)
-  })
-  const unansweredIds = Object.keys(questions)
-  .sort( (a,b) => questions[b].timestamp - questions[a].timestamp ).filter((id) => {
-    return !questions[id].optionOne.votes.includes(authedId) && !questions[id].optionTwo.votes.includes(authedId)
-  })
+const mapStateToProps = (state) => {
+  const { answeredIds, unansweredIds } = selectHomeState(state)
   return {
     answeredIds,
     unansweredIds,
