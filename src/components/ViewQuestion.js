@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PollResults from './PollResults'
 import PollAnswer from './PollAnswer'
 import Error from './Error'
+import viewQuestionSelector from '../selectors/viewQuestion'
 
 function ViewQuestion(props) {
   const { question, user, answered, error } = props
@@ -37,12 +38,9 @@ function ViewQuestion(props) {
 
 }
 
-const mapStateToProps = ({questions, users, authedUser}, props) => {
-  const { qId } = props.match.params
-  const question = questions[qId]
+const mapStateToProps = (state, props) => {
+  const { question, user, answered } = viewQuestionSelector(state,props)
   const error = question ? null : "Error 404! This Question Dosen't Exist"
-  const user = users[question.author]
-  const answered = users[authedUser.id].answers[qId] ? users[authedUser.id].answers[qId] : null
   return {
     user,
     question,
