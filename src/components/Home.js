@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Question from './Question'
-import selectHomeState from '../selectors/home'
+import homeSelector from '../selectors/home'
 
 class Home extends React.Component {
 
@@ -76,7 +76,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { answeredIds, unansweredIds } = selectHomeState(state)
+  const { answeredIds, unansweredIds } = homeSelector(state)
   return {
     answeredIds,
     unansweredIds,

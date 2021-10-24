@@ -3,7 +3,7 @@ import { createSelector } from 'reselect'
 const selectAuthedId = state => state.authedUser.id
 const selectQuestions = state => state.questions
 
-const selectHomeState = createSelector(
+const homeSelector = createSelector(
   selectAuthedId,
   selectQuestions,
   (authedId, questions) => {
@@ -22,4 +22,4 @@ const selectHomeState = createSelector(
   }
 )
 
-export default selectHomeState
+export default homeSelector
