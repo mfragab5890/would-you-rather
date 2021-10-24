@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect,withRouter } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import LoadingBar from 'react-redux-loading'
 import Loader from './Loader'
@@ -13,14 +13,23 @@ import LeaderBoard from './LeaderBoard'
 import ViewQuestion from './ViewQuestion'
 
 class App extends React.Component {
-
-  componentDidMount() {
-    this.props.dispatch(handleInitialData())
+  state = {
+    prevLocation : ''
+  }
+  async componentDidMount() {
+    const { prevLocation } = this.state
+    const { pathname } = this.props.location
+    if ( prevLocation !== pathname ) {
+      await this.setState({
+        prevLocation : pathname
+      })
+    }
+    await this.props.dispatch(handleInitialData())
   }
 
   render(){
-    const {authedUser, loading} = this.props
-
+    const { authedUser, loading } = this.props
+    const { prevLocation } = this.state
     if ( authedUser !== null ) {
       return (
         <Fragment>
@@ -78,11 +87,11 @@ class App extends React.Component {
         <Fragment>
           <LoadingBar />
           <Route exact path='/sign-up' render ={() => (
-              <SignUp />
+              <SignUp prevLocation = {prevLocation} />
             )}
           />
-          <Route exact path='/log-in' render ={() => (
-              <Login />
+        <Route exact path='/log-in' render ={() => (
+              <Login prevLocation = {prevLocation} />
             )}
           />
         <Redirect to='/log-in' />
@@ -101,4 +110,4 @@ const mapStateToProps = ({authedUser}) => {
   };
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))

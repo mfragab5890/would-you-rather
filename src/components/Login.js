@@ -41,14 +41,14 @@ class Login extends React.Component {
 
   handleFormSubmit = async(e) => {
     e.preventDefault()
-    const { dispatch } = this.props
+    const { dispatch, prevLocation } = this.props
     const userId = this.state.id
     const userPassword = this.state.password
     this.setState({
       formComplete : false
     })
     if ( await dispatch(handleUserLogin({userId,userPassword})) ){
-      this.props.history.push(`/`)
+      this.props.history.push(prevLocation)
     }
     else {
       this.setState({showError:true})
@@ -164,10 +164,11 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({users, errors}) => {
+const mapStateToProps = ({users, errors}, {prevLocation}) => {
   return {
     error : errors.login_error? errors.login_error : null,
-    userIds : Object.keys(users)
+    userIds : Object.keys(users),
+    prevLocation
   };
 }
 
