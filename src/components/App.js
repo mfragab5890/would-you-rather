@@ -11,7 +11,7 @@ import Home from './Home'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import ViewQuestion from './ViewQuestion'
-
+import Error from './Error'
 class App extends React.Component {
   state = {
     prevLocation : ''
@@ -63,6 +63,13 @@ class App extends React.Component {
                 }
                 />
               <Route exact path='/questions/:qId' component = { ViewQuestion } />
+              <Route path='*' exact={true} render ={() =>{
+                  return (
+                    <Error message = "Sorry This Page Doesn't exist" />
+                    );
+                  }
+                }
+                />
             </div>
 
             :<Route exact path='/' render ={() =>{
@@ -90,7 +97,7 @@ class App extends React.Component {
               <SignUp prevLocation = {prevLocation} />
             )}
           />
-        <Route exact path='/log-in' render ={() => (
+          <Route exact path='/log-in' render ={() => (
               <Login prevLocation = {prevLocation} />
             )}
           />
