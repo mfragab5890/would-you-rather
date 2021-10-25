@@ -12,6 +12,7 @@ import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
 import ViewQuestion from './ViewQuestion'
 import Error from './Error'
+
 class App extends React.Component {
   state = {
     prevLocation : ''
